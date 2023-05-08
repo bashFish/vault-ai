@@ -8,7 +8,7 @@ else
     script_name="${0}"
 fi
 dir_path="$( cd "$(dirname "$script_name")" >/dev/null 2>&1 ; pwd -P )"
-secrets_path="${dir_path}/../secret"
+secrets_path="secret"
 test ! -d $secrets_path && echo "ERR: ../secret dir missing!" && return 1
 
 export GO111MODULE=on
@@ -17,6 +17,7 @@ export GOPATH="$HOME/go"
 export PATH="$PATH:$PWD/bin:$PWD/tools/protoc-3.6.1/bin"
 export DOCKER_BUILDKIT=1
 export OPENAI_API_KEY="$(cat ${secrets_path}/openai_api_key)"
+export OPENAI_ORGANIZATION="$(cat ${secrets_path}/openai_organization)"
 export PINECONE_API_KEY="$(cat ${secrets_path}/pinecone_api_key)"
 export PINECONE_API_ENDPOINT="$(cat ${secrets_path}/pinecone_api_endpoint)"
 
