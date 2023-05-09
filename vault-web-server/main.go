@@ -50,7 +50,7 @@ func main() {
 
 	openaiApiKey := os.Getenv("OPENAI_API_KEY")
 	openaiOrganization := os.Getenv("OPENAI_ORGANIZATION")
-	if len(openaiApiKey) == 0 or len(openaiOrganization) == 0 {
+	if len(openaiApiKey) == 0 || len(openaiOrganization) == 0 {
 		log.Fatalln("MISSING OPENAI API KEY or ORGANIZATION ENV VARIABLE")
 	}
 	openaiClient := openai.NewOrgClient(openaiApiKey, openaiOrganization)
