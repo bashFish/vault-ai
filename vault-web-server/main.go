@@ -49,10 +49,11 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	openaiApiKey := os.Getenv("OPENAI_API_KEY")
-	if len(openaiApiKey) == 0 {
-		log.Fatalln("MISSING OPENAI API KEY ENV VARIABLE")
+	openaiOrganization := os.Getenv("OPENAI_ORGANIZATION")
+	if len(openaiApiKey) == 0 or len(openaiOrganization) == 0 {
+		log.Fatalln("MISSING OPENAI API KEY or ORGANIZATION ENV VARIABLE")
 	}
-	openaiClient := openai.NewClient(openaiApiKey)
+	openaiClient := openai.NewOrgClient(openaiApiKey, openaiOrganization)
 
 	pineconeApiKey := os.Getenv("PINECONE_API_KEY")
 	if len(pineconeApiKey) == 0 {
